@@ -54,6 +54,8 @@ typedef uint8_t pcm_buf_item_size_t;
 
 #define UNSIGNED_MSB (1 << ((USER_AUDIO_RESOLUTION)*8 - 1))
 
+uint8_t get_output_io_1(void);
+uint8_t get_output_io_2(void);
 uint8_t *get_pcm_buf0(void);
 uint8_t *get_pcm_buf1(void);
 uint8_t *get_pcm_buf2(void);
