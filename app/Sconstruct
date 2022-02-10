@@ -1,0 +1,17 @@
+import os
+env = Environment(ENV = os.environ)
+env['SDK_ROOT'] = Dir('../LS_SDK/')
+env['OPT_LVL'] = ' -Os '
+env.SConscript(env['SDK_ROOT'].File('soc/SConscript'),exports=['env'])
+src = [    
+    'audio_format/adpcm/audio_play_adpcm.c',
+    'audio_format/adpcm/audio_format_adpcm.c',
+    'audio_format/pcm/audio_play_pcm.c',
+    'main.c',
+]
+inc = [
+    '.'
+]
+env.app_build('audio_play',src,inc, ble=False)
+env.Append(
+    LIBS=[File(env.subst('$SDK_ROOT/soc/arm_cm/le501x/bin/lib_audio_play.o'))])

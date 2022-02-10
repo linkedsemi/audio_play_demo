@@ -1,0 +1,6 @@
+[submodule "LS_SDK"]
+	path = LS_SDK
+	url = http://10.10.20.8:8000/sw/ls_sdk.git
+[submodule "audio_play"]
+	path = audio_play
+	url = http://10.10.20.8:8000/sw/solutions/audio_play.git

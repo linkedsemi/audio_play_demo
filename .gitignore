@@ -1,0 +1,6 @@
+.sconsign.dblite
+app/build/
+*UVBuild/
+*.lst
+*.uvguix.*
+*.map
