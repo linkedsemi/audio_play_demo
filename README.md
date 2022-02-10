@@ -21,7 +21,7 @@
 
 1. Use command "git submodule update --init --depth=1" to fetch other submodule(LS_SDK).
 
-1. Modify user_audio_config.h, and copy the corresponding lib file to "LS_SDK/soc/arm_cm/le501x/bin", if can be found. Remember renaming it to "lib_audio_play.o" after copy. Try to contact the AE/FAE if no corresponding lib file can be found.
+1. Modify user_audio_config.h, and copy the corresponding lib file(app/libs/lib_audio_play_xxx.o) to "LS_SDK/soc/arm_cm/le501x/bin", if can be found. Remember renaming it to "lib_audio_play.o" after copy. Try to contact the AE/FAE if no corresponding lib file can be found.
 
 1. Enter app portfolio and execute "Scons" to generate production hex file.
 
