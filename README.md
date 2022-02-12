@@ -7,7 +7,7 @@
 
 1. Use command "git submodule update --init" to fetch submodules (LS_SDK & audio_play) with corresponding versions.
 
-1. Modify user_audio_config.h.
+1. Modify user_audio_config.h(including audio_hw.h if RESOLUTION_DEFAULT need to be modified). _**Do not make any modification for the head files in the following steps!!!**_
 
 1. Enter audio_play portfolio and execute "Scons install" to generate lib file in target directory(LS_SDK/soc/arm_cm/le501x/bin).
 
