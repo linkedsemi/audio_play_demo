@@ -9,10 +9,12 @@ uint8_t get_output_io_1(void)
 {
     return USER_AUDIO_OUTPUT_IO_1;
 }
+#if USER_AUDIO_OUTPUT_MODE == AUDIO_OUTPUT_MODE_DIFFERENTIAL
 uint8_t get_output_io_2(void)
 {
     return USER_AUDIO_OUTPUT_IO_2;
 }
+#endif
 int main(void)
 {
     sys_init_none();
