@@ -26,3 +26,5 @@
 1. Enter app portfolio and execute "Scons" to generate production hex file.
 
 1. Download audio files & production hex file to flash.
+
+**(Instead of fetching LS_SDK by git command, user can also copy LS_SDK to the root directory of audio_play_demo.)**
