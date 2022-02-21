@@ -17,9 +17,9 @@
 
 **For clients, please follow the steps below to compile.**
 
-1. Git clone audio_play_demo locally based on user repository url.
+1. Download the audio_play_demo zip file then unzip it. Another way is fetching audio_play_demo with the repository url by git. 
 
-1. Use command "git submodule update --init --depth=1" to fetch other submodule(LS_SDK).
+1. Unzip the zip file of LS_SDK or use command "git submodule update --init --depth=1" to fetch it.
 
 1. Modify user_audio_config.h, and copy the corresponding lib file(app/libs/lib_audio_play_xxx.o) to "LS_SDK/soc/arm_cm/le501x/bin", if can be found. Remember renaming it to "lib_audio_play.o" after copy. Try to contact the AE/FAE if no corresponding lib file can be found.
 
@@ -27,4 +27,3 @@
 
 1. Download audio files & production hex file to flash.
 
-**(Instead of fetching LS_SDK by git command, user can also copy LS_SDK to the root directory of audio_play_demo.)**
