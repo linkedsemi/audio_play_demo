@@ -13,7 +13,7 @@
 
 1. Enter app portfolio and execute "Scons" to generate production hex file.
 
-1. Erase flash and download audio files to flash by JFlash or other programming tools. Before programming, ensure that the start address for of the audio files required by JFlash should be equal with the base address configuration in user_audio_config.h.
+1. Erase flash and download audio files to flash by JFlash or other programming tools. Before programming, ensure that the start address for of the audio files required by JFlash should be equal with the base address configuration in user_audio_config.h. The default demo audio file is laid under directory app\audio_format\xxx while xxx is the audio format.
 
 1. Download production hex file to flash. **Do not erase flash anymore in this step!!!**
 
@@ -35,6 +35,6 @@ _If you are using Keil:_
 
 _Then:_
 
-5. Erase flash and download audio files to flash by JFlash or other programming tools. Before programming, ensure that the start address for of the audio files required by JFlash should be equal with the base address configuration in user_audio_config.h.
+5. Erase flash and download audio files to flash by JFlash or other programming tools. Before programming, ensure that the start address for of the audio files required by JFlash should be equal with the base address configuration in user_audio_config.h. The default demo audio file is laid under directory app\audio_format\xxx while xxx is the audio format.
 
 1. Download production hex file to flash. **Do not erase flash anymore in this step!!!**
