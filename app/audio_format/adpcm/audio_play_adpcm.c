@@ -1,10 +1,9 @@
 #include <stdint.h>
 #include "platform.h"
-#include "spi_flash.h"
 #include "audio_play_adpcm.h"
 #include "audio_format_adpcm.h"
 #include "..\..\audio_hw.h"
-#include "log.h"
+#include "..\audio_format_common.h"
 
 #if USER_AUDIO_FORMAT == AUDIO_ADPCM
 #define ADPCM_BlOCK_SIZE 256
@@ -17,7 +16,7 @@ void audio_prepare_next_half(bool current_alt)
 {
     uint8_t pcm_buff[PCM_BUF_SIZE];
     uint8_t Flash_ADPCM_Buff[ADPCM_BlOCK_SIZE];
-    spi_flash_quad_io_read(audio_flash_base + audio_flash_offset, &Flash_ADPCM_Buff[0], ADPCM_BlOCK_SIZE);
+    user_read_audio_data(audio_flash_base + audio_flash_offset, &Flash_ADPCM_Buff[0], ADPCM_BlOCK_SIZE);
     Adpcm_Decode_Block((pcm_src_item_size_t *)&pcm_buff, (const uint8_t *)&Flash_ADPCM_Buff[0], ADPCM_BlOCK_SIZE, 1);
     uint8_t *target_buf1;
     uint8_t *target_buf2;

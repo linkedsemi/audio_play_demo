@@ -1,9 +1,9 @@
 #include <stdint.h>
 #include <string.h>
 #include "platform.h"
-#include "spi_flash.h"
 #include "audio_play_pcm.h"
 #include "..\..\audio_hw.h"
+#include "..\audio_format_common.h"
 
 #if USER_AUDIO_FORMAT == AUDIO_PCM
 
@@ -14,7 +14,7 @@ static uint32_t audio_flash_length;
 void audio_prepare_next_half(bool current_alt)
 {
     uint8_t pcm_buff[PCM_BUF_SIZE];
-    spi_flash_quad_io_read(audio_flash_base + audio_flash_offset, &pcm_buff[0], PCM_BUF_SIZE);
+    user_read_audio_data(audio_flash_base + audio_flash_offset, &pcm_buff[0], PCM_BUF_SIZE);
     uint8_t *target_buf1;
     uint8_t *target_buf2;
     if (current_alt)

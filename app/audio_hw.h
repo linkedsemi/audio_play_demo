@@ -56,7 +56,7 @@ typedef uint8_t pcm_buf_item_size_t;
 
 /**
  ****************************************************************************************
- * \brief Get audio output channel 1.
+ * \brief Get audio output channel 1. The function should be implemented by user!!!
  * 
  * \return The GPIO of output IO 1.
  * 
@@ -65,7 +65,8 @@ typedef uint8_t pcm_buf_item_size_t;
 uint8_t get_output_io_1(void);
 /**
  ****************************************************************************************
- * \brief Get audio output channel 2.
+ * \brief Get audio output channel 2. The function should be implemented by user under 
+ * differential mode!!!
  * 
  * \return The GPIO of output IO 2.
  * 
