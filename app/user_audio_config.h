@@ -26,11 +26,11 @@ struct user_audio_config_t
 #define USER_AUDIO_CONFIG {                         \
         [0] = {                                     \
             .base = 0xa000,                         \
-            .length = 34816,                        \
+            .length = 0x1300,                        \
         },                                          \
         [1] = {                                     \
-            .base = 0x13000,                        \
-            .length = 34816,                        \
+            .base = 0xb300,                        \
+            .length = 0x1400,                        \
         },                                          \
 }
 #elif USER_AUDIO_FORMAT == AUDIO_PCM
@@ -40,7 +40,7 @@ struct user_audio_config_t
             .length = 0x35b0,                       \
         },                                          \
         [1] = {                                     \
-            .base = 0x35b0,                         \
+            .base = 0xd5b0,                         \
             .length = 0x39c2,                       \
         },                                          \
 }

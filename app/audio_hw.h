@@ -133,10 +133,13 @@ void audio_set_stop_flag(void);
  * 
  * \param[in]  audio_base         Buffer address for user audio.
  * \param[in]  audio_length       Audio data length in units of byte.
+ * \param[in]  play_cplt_cb       Audio play complete callback function defined by user.
+ *                                The function will be called in interrupt;
+ * \param[in]  param              Parameter for play_cplt_cb.
  * 
  ****************************************************************************************
  */
-void audio_start(uint32_t audio_base, uint32_t audio_length);
+void audio_start(uint32_t audio_base, uint32_t audio_length, void (*play_cplt_cb)(void *), void *param);
 /**
  ****************************************************************************************
  * \brief Stop audio play.

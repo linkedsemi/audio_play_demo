@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <stdbool.h>
 #include "platform.h"
 #include "io_config.h"
 #include "spi_flash.h"
@@ -21,10 +22,21 @@ void user_read_audio_data(uint32_t offset, uint8_t *buf, uint16_t length)
 {
     spi_flash_quad_io_read(offset, buf, length);
 }
+
+static volatile bool audio_play_cplt_flag;
+static void user_audio_play_cplt_func(void *param)
+{
+    *(bool *)param = true;
+}
 int main(void)
 {
     sys_init_none();
     audio_hw_init();
-    audio_start(user_audio_config_array[0].base, user_audio_config_array[0].length);
+    audio_play_cplt_flag = false;
+    audio_start(user_audio_config_array[0].base, user_audio_config_array[0].length, &user_audio_play_cplt_func, (void*)&audio_play_cplt_flag);
+    while(!audio_play_cplt_flag);
+    audio_play_cplt_flag = false;
+    audio_start(user_audio_config_array[1].base, user_audio_config_array[1].length, &user_audio_play_cplt_func, (void*)&audio_play_cplt_flag);
+    
     while (1);    
 }
