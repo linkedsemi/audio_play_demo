@@ -25,24 +25,6 @@ uint8_t get_output_io_1(void);
 uint8_t get_output_io_2(void);
 /**
  ****************************************************************************************
- * \brief Get dmac instance.
- * 
- * \return Instance address of dmac.
- * 
- ****************************************************************************************
- */
-DMA_Controller_HandleTypeDef* get_dmac_inst(void);
-/**
- ****************************************************************************************
- * \brief Get timer instance.
- * 
- * \return Instance address of timer.
- * 
- ****************************************************************************************
- */
-XIP_BANNED reg_timer_t* get_timer_inst(void);
-/**
- ****************************************************************************************
  * \brief Read user audio data. This function is supposed to be implemented by user.
  * 
  * \param[in]  offset      Offset of audio data to be read.
