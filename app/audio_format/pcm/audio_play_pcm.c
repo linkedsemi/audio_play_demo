@@ -2,8 +2,8 @@
 #include <string.h>
 #include "platform.h"
 #include "audio_play_pcm.h"
-#include "..\..\audio_hw.h"
-#include "..\audio_format_common.h"
+#include "..\audio_hw.h"
+#include "..\..\api_implemented_by_user.h"
 
 #if USER_AUDIO_FORMAT == AUDIO_PCM
 

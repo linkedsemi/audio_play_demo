@@ -7,6 +7,7 @@ src = [
     'audio_format/adpcm/audio_play_adpcm.c',
     'audio_format/adpcm/audio_format_adpcm.c',
     'audio_format/pcm/audio_play_pcm.c',
+    'audio_format/audio_format_common.c',
     'main.c',
 ]
 inc = [

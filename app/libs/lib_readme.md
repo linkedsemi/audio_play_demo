@@ -1,8 +1,6 @@
-**lib_audio_play_ADPCM_diff_8K_s16bit_a9bit_signed_vol1_2.o**
+**lib_audio_play_diff_8K_s16bit_a9bit_signed_vol1_2.o**
 
-lib explaination:
-
-- audio format: ADPCM
+lib name description:
 
 - output mode: differential
 

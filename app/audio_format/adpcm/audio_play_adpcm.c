@@ -2,8 +2,8 @@
 #include "platform.h"
 #include "audio_play_adpcm.h"
 #include "audio_format_adpcm.h"
-#include "..\..\audio_hw.h"
-#include "..\audio_format_common.h"
+#include "..\audio_hw.h"
+#include "..\..\api_implemented_by_user.h"
 
 #if USER_AUDIO_FORMAT == AUDIO_ADPCM
 #define ADPCM_BlOCK_SIZE 256

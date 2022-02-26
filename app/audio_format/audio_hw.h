@@ -1,11 +1,9 @@
 #include "compile_flag.h"
+#include "..\app_config.h"
 #include "user_audio_config.h"
+#include "user_audio_config_for_lib.h"
 #ifndef AUDIO_HW_H_
 #define AUDIO_HW_H_
-
-#define RESOLUTION_DEFAULT 8
-
-_Static_assert(RESOLUTION_DEFAULT <= USER_AUDIO_RESOLUTION*8, "The resolution is not supported!!!");
 
 #if USER_AUDIO_FORMAT == AUDIO_ADPCM
 #define PCM_BUF_SIZE 1010
@@ -54,25 +52,6 @@ typedef uint8_t pcm_buf_item_size_t;
 
 #define UNSIGNED_MSB (1 << ((USER_AUDIO_RESOLUTION)*8 - 1))
 
-/**
- ****************************************************************************************
- * \brief Get audio output channel 1. The function should be implemented by user!!!
- * 
- * \return The GPIO of output IO 1.
- * 
- ****************************************************************************************
- */
-uint8_t get_output_io_1(void);
-/**
- ****************************************************************************************
- * \brief Get audio output channel 2. The function should be implemented by user under 
- * differential mode!!!
- * 
- * \return The GPIO of output IO 2.
- * 
- ****************************************************************************************
- */
-uint8_t get_output_io_2(void);
 /**
  ****************************************************************************************
  * \brief Get address of PCM buffer_0.
@@ -129,36 +108,40 @@ void audio_handle_pcm(void *dst_pcm_buf1, void *dst_pcm_buf2, const pcm_src_item
 void audio_set_stop_flag(void);
 /**
  ****************************************************************************************
- * \brief Audio start play function.
+ * \brief Function to initialize audio play for specific format.
  * 
- * \param[in]  audio_base         Buffer address for user audio.
- * \param[in]  audio_length       Audio data length in units of byte.
- * \param[in]  play_cplt_cb       Audio play complete callback function defined by user.
- *                                The function will be called in interrupt;
- * \param[in]  param              Parameter for play_cplt_cb.
+ * \param[in]  base         Base address of audio file to play.
+ * \param[in]  length       Length of audio file to play.
  * 
  ****************************************************************************************
  */
-void audio_start(uint32_t audio_base, uint32_t audio_length, void (*play_cplt_cb)(void *), void *param);
+void audio_play_init(uint32_t base, uint32_t length);
 /**
  ****************************************************************************************
- * \brief Stop audio play.
+ * \brief Function to prepare pcm audio for next half buffer.
+ * 
+ * \param[in]  current_alt  Flag for dma pingpong buffer.
  * 
  ****************************************************************************************
  */
-void audio_stop(void);
+void audio_prepare_next_half(bool current_alt);
 /**
  ****************************************************************************************
- * \brief Hardware initialization for audio play.
+ * \brief Get value of SINGLE_BUF_SIZE.
+ * 
+ * \return Value of SINGLE_BUF_SIZE.
  * 
  ****************************************************************************************
  */
-void audio_hw_init(void);
+uint16_t get_single_buf_size(void);
 /**
  ****************************************************************************************
- * \brief Hardware deinitialization for audio play.
+ * \brief Get value of PCM_BUF_SIZE.
+ * 
+ * \return Value of PCM_BUF_SIZE.
  * 
  ****************************************************************************************
  */
-void audio_hw_deinit(void);
+uint16_t get_pcm_buf_size(void);
+
 #endif
