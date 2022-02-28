@@ -13,6 +13,16 @@
 
 DEF_DMA_CONTROLLER(dmac1_inst, DMAC1);
 
+struct audio_hw_config user_audio_hw_config = 
+{
+    .dmac_inst_ptr = &dmac1_inst,
+    .dma_channel1 = 1,
+    .dma_channel2 = 2,
+    .timer_irq = GPTIMC1_IRQn,
+    .handshake = CH_LSGPTIM1_UP,
+    .timer_inst = LSGPTIMC,
+};
+
 static struct user_audio_config_t user_audio_config_array[] = USER_AUDIO_CONFIG;
 uint8_t get_output_io_1(void)
 {
@@ -41,7 +51,7 @@ int main(void)
 {
     sys_init_none();
     DMA_CONTROLLER_INIT(dmac1_inst);
-    audio_hw_init(&dmac1_inst, 1, 2, LSGPTIMC, GPTIMC1_IRQn, CH_LSGPTIM1_UP);
+    audio_hw_init(&user_audio_hw_config);
     audio_play_cplt_flag = false;
     audio_start(user_audio_config_array[0].base, user_audio_config_array[0].length, &user_audio_play_cplt_func, (void*)&audio_play_cplt_flag);
     while(!audio_play_cplt_flag);

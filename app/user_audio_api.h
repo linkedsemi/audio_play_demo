@@ -1,6 +1,21 @@
 #include <stdint.h>
+#include "lsdmac.h"
+#include "reg_timer_type.h"
 #ifndef USER_AUDIO_API_H_
 #define USER_AUDIO_API_H_
+/**
+  * @brief Audio hardware config struct.
+  */
+struct audio_hw_config
+{
+    DMA_Controller_HandleTypeDef* dmac_inst_ptr;    /*!< Dmac instance*/
+    uint8_t dma_channel1;                           /*!< Dmac channel 1*/
+    uint8_t dma_channel2;                           /*!< Dmac channel 2*/
+    uint8_t timer_irq;                              /*!< Timer irq*/
+    DMA_ChnSig_TypeDef handshake;                   /*!< Dmac timer handshake*/
+    reg_timer_t* timer_inst;                        /*!< Timer instance*/
+};
+
 /**
  ****************************************************************************************
  * \brief Audio start play function.
@@ -25,16 +40,11 @@ void audio_stop(void);
  ****************************************************************************************
  * \brief Hardware initialization for audio play.
  * 
- * \param[in]  dmac_inst         DMAC instance.
- * \param[in]  dma_channel1      DMA channel 1.
- * \param[in]  dma_channel2      DMA channel 2.
- * \param[in]  timer_inst        Timer instance.
- * \param[in]  timer_irq         Timer interrupt.
- * \param[in]  handshake         Hardware handshake.
+ * \param[in]  config            Pointer to audio_hw_config struct.
  * 
  ****************************************************************************************
  */
-void audio_hw_init(DMA_Controller_HandleTypeDef* dmac_inst, uint16_t dma_channel1, uint16_t dma_channel2, reg_timer_t* timer_inst, uint8_t timer_irq, DMA_ChnSig_TypeDef handshake);
+void audio_hw_init(struct audio_hw_config* config);
 /**
  ****************************************************************************************
  * \brief Hardware deinitialization for audio play.

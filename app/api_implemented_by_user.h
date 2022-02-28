@@ -4,9 +4,11 @@
 #include "lstimer.h"
 #ifndef AUDIO_FORMAT_COMMON_H_
 #define AUDIO_FORMAT_COMMON_H_
+// All the functions in the header file should be implemented by user!!!
+
 /**
  ****************************************************************************************
- * \brief Get audio output channel 1. The function should be implemented by user!!!
+ * \brief Get audio output channel 1.
  * 
  * \return The GPIO of output IO 1.
  * 
