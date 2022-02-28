@@ -1,4 +1,4 @@
-**lib_audio_play_diff_8K_s16bit_a8bit_signed.o**
+**lib_audio_play_diff_8K_s16bit_a9bit_signed.o**
 
 lib name description:
 
@@ -8,6 +8,6 @@ lib name description:
 
 - source resolution: 16bit
 
-- actual resolution: 8bit
+- actual resolution: 9bit
 
 - PCM data: signed
