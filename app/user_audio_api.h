@@ -28,12 +28,11 @@ void audio_stop(void);
  * \param[in]  dmac_inst         DMAC instance.
  * \param[in]  dma_channel1      DMA channel 1.
  * \param[in]  dma_channel2      DMA channel 2.
- * \param[in]  signal            Signal between DMAC & timer.
  * \param[in]  timer_inst        Timer instance.
  * 
  ****************************************************************************************
  */
-void audio_hw_init(DMA_Controller_HandleTypeDef* dmac_inst, uint16_t dma_channel1, uint16_t dma_channel2, DMA_ChnSig_TypeDef signal, reg_timer_t* timer_inst);
+void audio_hw_init(DMA_Controller_HandleTypeDef* dmac_inst, uint16_t dma_channel1, uint16_t dma_channel2, reg_timer_t* timer_inst);
 /**
  ****************************************************************************************
  * \brief Hardware deinitialization for audio play.

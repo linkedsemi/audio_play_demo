@@ -36,7 +36,7 @@ int main(void)
 {
     sys_init_none();
     DMA_CONTROLLER_INIT(dmac1_inst);
-    audio_hw_init(&dmac1_inst, 1, 2, CH_LSGPTIM1_UP, LSGPTIMC);
+    audio_hw_init(&dmac1_inst, 1, 2, LSGPTIMC);
     audio_play_cplt_flag = false;
     audio_start(user_audio_config_array[0].base, user_audio_config_array[0].length, &user_audio_play_cplt_func, (void*)&audio_play_cplt_flag);
     while(!audio_play_cplt_flag);
