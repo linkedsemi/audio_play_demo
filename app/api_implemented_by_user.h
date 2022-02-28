@@ -25,6 +25,15 @@ uint8_t get_output_io_1(void);
 uint8_t get_output_io_2(void);
 /**
  ****************************************************************************************
+ * \brief Get audio play volume setting
+ * 
+ * \return Volume setting.
+ * 
+ ****************************************************************************************
+ */
+uint8_t get_volume_setting(void);
+/**
+ ****************************************************************************************
  * \brief Read user audio data. This function is supposed to be implemented by user.
  * 
  * \param[in]  offset      Offset of audio data to be read.

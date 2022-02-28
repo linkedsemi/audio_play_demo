@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "platform.h"
+#include "le501x.h"
 #include "compile_flag.h"
 #include "io_config.h"
 #include "spi_flash.h"
@@ -23,6 +24,10 @@ uint8_t get_output_io_2(void)
     return USER_AUDIO_OUTPUT_IO_2;
 }
 #endif
+uint8_t get_volume_setting(void)
+{
+    return AUDIO_PCM_VOLUME_1_2;
+}
 void user_read_audio_data(uint32_t offset, uint8_t *buf, uint16_t length)
 {
     spi_flash_quad_io_read(offset, buf, length);
@@ -36,7 +41,7 @@ int main(void)
 {
     sys_init_none();
     DMA_CONTROLLER_INIT(dmac1_inst);
-    audio_hw_init(&dmac1_inst, 1, 2, LSGPTIMC);
+    audio_hw_init(&dmac1_inst, 1, 2, LSGPTIMC, GPTIMC1_IRQn, CH_LSGPTIM1_UP);
     audio_play_cplt_flag = false;
     audio_start(user_audio_config_array[0].base, user_audio_config_array[0].length, &user_audio_play_cplt_func, (void*)&audio_play_cplt_flag);
     while(!audio_play_cplt_flag);
