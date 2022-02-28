@@ -24,16 +24,6 @@ struct audio_hw_config user_audio_hw_config =
 };
 
 static struct user_audio_config_t user_audio_config_array[] = USER_AUDIO_CONFIG;
-uint8_t get_output_io_1(void)
-{
-    return USER_AUDIO_OUTPUT_IO_1;
-}
-#if USER_AUDIO_OUTPUT_MODE == AUDIO_OUTPUT_MODE_DIFFERENTIAL
-uint8_t get_output_io_2(void)
-{
-    return USER_AUDIO_OUTPUT_IO_2;
-}
-#endif
 uint8_t get_volume_setting(void)
 {
     return AUDIO_PCM_VOLUME_1_2;
@@ -52,6 +42,10 @@ int main(void)
     sys_init_none();
     DMA_CONTROLLER_INIT(dmac1_inst);
     audio_hw_init(&user_audio_hw_config);
+    // adtim1_ch1_io_init(USER_AUDIO_OUTPUT_IO_1, true, 0);
+    // adtim1_ch2_io_init(USER_AUDIO_OUTPUT_IO_2, true, 0);
+    gptimc1_ch1_io_init(USER_AUDIO_OUTPUT_IO_1, true, 0);
+    gptimc1_ch2_io_init(USER_AUDIO_OUTPUT_IO_2, true, 0);
     audio_play_cplt_flag = false;
     audio_start(user_audio_config_array[0].base, user_audio_config_array[0].length, &user_audio_play_cplt_func, (void*)&audio_play_cplt_flag);
     while(!audio_play_cplt_flag);

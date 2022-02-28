@@ -8,25 +8,6 @@
 
 /**
  ****************************************************************************************
- * \brief Get audio output channel 1.
- * 
- * \return The GPIO of output IO 1.
- * 
- ****************************************************************************************
- */
-uint8_t get_output_io_1(void);
-/**
- ****************************************************************************************
- * \brief Get audio output channel 2. The function should be implemented by user under 
- * differential mode!!!
- * 
- * \return The GPIO of output IO 2.
- * 
- ****************************************************************************************
- */
-uint8_t get_output_io_2(void);
-/**
- ****************************************************************************************
  * \brief Get audio play volume setting
  * 
  * \return Volume setting.
