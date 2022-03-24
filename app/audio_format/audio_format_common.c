@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <stddef.h>
 #include "lsdmac.h"
 #include "audio_hw.h"
 
