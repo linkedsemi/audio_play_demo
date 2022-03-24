@@ -45,7 +45,9 @@ int main(void)
     // adtim1_ch1_io_init(USER_AUDIO_OUTPUT_IO_1, true, 0);
     // adtim1_ch2_io_init(USER_AUDIO_OUTPUT_IO_2, true, 0);
     gptimc1_ch1_io_init(USER_AUDIO_OUTPUT_IO_1, true, 0);
-    gptimc1_ch2_io_init(USER_AUDIO_OUTPUT_IO_2, true, 0);
+    #if USER_AUDIO_OUTPUT_MODE == AUDIO_OUTPUT_MODE_DIFFERENTIAL
+        gptimc1_ch2_io_init(USER_AUDIO_OUTPUT_IO_2, true, 0);
+    #endif
     audio_play_cplt_flag = false;
     audio_start(user_audio_config_array[0].base, user_audio_config_array[0].length, &user_audio_play_cplt_func, (void*)&audio_play_cplt_flag);
     while(!audio_play_cplt_flag);
