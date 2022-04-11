@@ -30,18 +30,18 @@ void audio_prepare_next_half(bool current_alt)
 
     audio_handle_pcm(target_buf1, target_buf2, (const pcm_src_item_size_t*)&pcm_buff[0]);
     audio_flash_offset += PCM_BUF_SIZE;
-    if (audio_flash_offset > audio_flash_length)
+    if (audio_flash_offset >= audio_flash_length)
     {
         // audio_stop();   
         audio_set_stop_flag();  
         uint32_t fill_zero_bytes = audio_flash_offset - audio_flash_length;
-        if (audio_flash_offset > 0)
+        if (fill_zero_bytes > 0)
         {
-            uint32_t length = fill_zero_bytes * (RESOLUTION_ACTUAL > 8 ? 2: 1);
-            memset(&target_buf1[SINGLE_BUF_SIZE - length], 0, length);
+            // uint32_t length = fill_zero_bytes * (RESOLUTION_ACTUAL > 8 ? 2: 1);
+            memset(&target_buf1[SINGLE_BUF_SIZE - fill_zero_bytes], 0, fill_zero_bytes);
             if (target_buf2 != NULL)
             {
-                memset(&target_buf2[SINGLE_BUF_SIZE - length], 0, length);
+                memset(&target_buf2[SINGLE_BUF_SIZE - fill_zero_bytes], 0, fill_zero_bytes);
             }
         }     
     }

@@ -17,6 +17,17 @@ void audio_prepare_next_half(bool current_alt)
     uint8_t pcm_buff[PCM_BUF_SIZE];
     uint8_t Flash_ADPCM_Buff[ADPCM_BlOCK_SIZE];
     user_read_audio_data(audio_flash_base + audio_flash_offset, &Flash_ADPCM_Buff[0], ADPCM_BlOCK_SIZE);
+    audio_flash_offset += ADPCM_BlOCK_SIZE;
+    if (audio_flash_offset >= audio_flash_length)
+    {
+        // audio_stop();   
+        audio_set_stop_flag();  
+        uint32_t fill_zero_bytes = audio_flash_offset - audio_flash_length;
+        if (fill_zero_bytes > 0)
+        {
+            memset(&Flash_ADPCM_Buff[ADPCM_BlOCK_SIZE - fill_zero_bytes], 0, fill_zero_bytes);
+        }
+    }
     Adpcm_Decode_Block((pcm_src_item_size_t *)&pcm_buff, (const uint8_t *)&Flash_ADPCM_Buff[0], ADPCM_BlOCK_SIZE, 1);
     uint8_t *target_buf1;
     uint8_t *target_buf2;
@@ -32,22 +43,6 @@ void audio_prepare_next_half(bool current_alt)
     }
 
     audio_handle_pcm(target_buf1, target_buf2, (const pcm_src_item_size_t*)&pcm_buff[0]);
-    audio_flash_offset += ADPCM_BlOCK_SIZE;
-    if (audio_flash_offset >= audio_flash_length)
-    {
-        // audio_stop();   
-        audio_set_stop_flag();  
-        uint32_t fill_zero_bytes = audio_flash_offset - audio_flash_length;
-        if (audio_flash_offset > 0)
-        {
-            uint32_t length = fill_zero_bytes * 2 * (RESOLUTION_ACTUAL > 8 ? 2: 1);
-            memset(&target_buf1[SINGLE_BUF_SIZE - length], 0, length);
-            if (target_buf2 != NULL)
-            {
-                memset(&target_buf2[SINGLE_BUF_SIZE - length], 0, length);
-            }
-        }
-    }
 }
 
 void audio_play_init(uint32_t base, uint32_t length)
