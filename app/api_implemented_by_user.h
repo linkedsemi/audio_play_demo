@@ -2,8 +2,8 @@
 #include "compile_flag.h"
 #include "lsdmac.h"
 #include "lstimer.h"
-#ifndef AUDIO_FORMAT_COMMON_H_
-#define AUDIO_FORMAT_COMMON_H_
+#ifndef API_IMPLEMENTED_BY_USER_H_
+#define API_IMPLEMENTED_BY_USER_H_
 // All the functions in the header file should be implemented by user!!!
 
 /**
